@@ -15,10 +15,15 @@ public class GalleryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gallery);
 
-        GalleryFragment galleryFragment = new GalleryFragment();
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.add(R.id.frame_content, galleryFragment);
-        transaction.commit();
+        GalleryFragment galleryFragment = (GalleryFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.frame_content);
+
+        if(galleryFragment == null) {
+            galleryFragment = new GalleryFragment();
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            transaction.add(R.id.frame_content, galleryFragment);
+            transaction.commit();
+        }
 
         boolean firstLoad = true;
         if (savedInstanceState != null) {

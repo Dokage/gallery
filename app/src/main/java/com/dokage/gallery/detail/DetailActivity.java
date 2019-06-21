@@ -15,10 +15,13 @@ public class DetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_detail);
         String imageUrl = getIntent().getExtras().getString(Constant.KEY_URL);
 
-        DetailFragment detailFragment = new DetailFragment();
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.add(R.id.frame_detail, detailFragment);
-        transaction.commit();
+        DetailFragment detailFragment = (DetailFragment) getSupportFragmentManager().findFragmentById(R.id.frame_detail);
+        if(detailFragment == null){
+            detailFragment = new DetailFragment();
+            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+            transaction.add(R.id.frame_detail, detailFragment);
+            transaction.commit();
+        }
 
         new DetailPresenter(detailFragment, imageUrl);
 
