@@ -8,29 +8,29 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
 public class AppExecutors {
-    private final int THREAD_COUNT = 3;
-    private final Executor networkIO;
-    private final Executor mainThread;
+    private static final int THREAD_COUNT = 1;
+    private final Executor mNetworkIO;
+    private final Executor mMainThread;
 
     static class AppExecutorsHolder {
-        static final AppExecutors instance = new AppExecutors();
+        static final AppExecutors INSTANCE = new AppExecutors();
     }
 
     public static AppExecutors getInstance() {
-        return AppExecutorsHolder.instance;
+        return AppExecutorsHolder.INSTANCE;
     }
 
     private AppExecutors() {
-        networkIO = Executors.newFixedThreadPool(THREAD_COUNT);
-        mainThread = new MainThreadExecutor();
+        mNetworkIO = Executors.newFixedThreadPool(THREAD_COUNT);
+        mMainThread = new MainThreadExecutor();
     }
 
     public Executor getNetworkIO() {
-        return networkIO;
+        return mNetworkIO;
     }
 
     public Executor getMainThread() {
-        return mainThread;
+        return mMainThread;
     }
 
     private static class MainThreadExecutor implements Executor {
