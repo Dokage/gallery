@@ -68,12 +68,12 @@ public class GalleryFragment extends Fragment implements GalleryContract.View{
     }
 
     @Override
-    public void showImage(List<String> urls) {
+    public void showImage(List<String> imageUrls) {
         mProgressCircle.setVisibility(View.GONE);
         mNoImageView.setVisibility(View.GONE);
         mRecyclerView.setVisibility(View.VISIBLE);
 
-        mAdapter.mImageUrls = urls;
+        mAdapter.setImageUrls(imageUrls);
         mAdapter.notifyDataSetChanged();
     }
 

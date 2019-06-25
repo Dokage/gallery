@@ -16,11 +16,11 @@ import com.dokage.gallery.util.Constant;
 
 import java.util.List;
 
-public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.ViewHolder>{
+public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.ViewHolder> {
     private Fragment mFragment;
-    List<String> mImageUrls;
+    private List<String> mImageUrls;
 
-    GalleryAdapter(Fragment fragment, List<String> imageUrls){
+    GalleryAdapter(Fragment fragment, List<String> imageUrls) {
         mFragment = fragment;
         mImageUrls = imageUrls;
     }
@@ -37,7 +37,7 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.ViewHold
     public void onBindViewHolder(ViewHolder viewHolder, int i) {
         ImageView imageView = viewHolder.mImageView;
 
-        if(i < mImageUrls.size()) {
+        if (i < mImageUrls.size()) {
             String url = mImageUrls.get(i);
             Glide.with(mFragment)
                     .load(url)
@@ -52,7 +52,11 @@ public class GalleryAdapter extends RecyclerView.Adapter<GalleryAdapter.ViewHold
         return mImageUrls.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public void setImageUrls(List<String> imageUrls) {
+        mImageUrls = imageUrls;
+    }
+
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         ImageView mImageView;
 
         public ViewHolder(View itemView) {
